@@ -1,0 +1,19 @@
+version : "3"
+
+networks:
+  test:
+    external:
+      name: mbev1
+services: 
+  nodeapp:
+    deploy:
+      placement:
+        constraints:
+            - node.labels.name == manager
+    image: pintu/node-app:latest
+    ports :
+      - 4000:4000
+    networks:
+      test:
+        aliases:
+          - nodeapp
